@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse en cours...</title>
+<style>
+  body {
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+  <div id="msg">Analyse système en cours... Merci de patienter.</div>
+
+<script>
+  // Demande le mode plein écran
+  function goFullscreen() {
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if (el.msRequestFullscreen) el.msRequestFullscreen();
+  }
+
+  goFullscreen();
+
+  // Désactive les clics -> impression de freeze
+  document.body.style.pointerEvents = 'none';
+
+  // Après 60s, décongèle et dévoile la blague
+  setTimeout(() => {
+    document.body.style.pointerEvents = 'auto';
+    document.getElementById("msg").innerText = "C'était une blague 😄";
+    document.body.style.background = "#111";
+    document.body.style.color = "#fff";
+  }, 60000); // 1 minute
+</script>
+</body>
+</html>
